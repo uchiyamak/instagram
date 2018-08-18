@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SVProgressHUD
 
 class LoginViewController: UIViewController {
     
@@ -18,7 +19,32 @@ class LoginViewController: UIViewController {
     
     //ログインボタン
     @IBAction func handleLoginButton(_ sender: Any) {
-        
+        if let address = mailAddressTextField.text, let password = passwordTextField.text {
+            //アドレスとパスワードのどちらかが入力されていなければ何もしない
+            if address.isEmpty || password.isEmpty {
+                SVProgressHUD.showError(withStatus: "必須項目を入力してください")
+                return
+            }
+            
+            //HUDで処理中を表示
+            SVProgressHUD.show()
+            
+            Auth.auth().signIn(withEmail: address, password: password) { user, error in //userは何？
+                if let error = error {
+                    print("DEBUG_PRINT: " + error.localizedDescription)
+                    SVProgressHUD.showError(withStatus: "サインインに失敗しました。")
+                    return
+                } else {
+                    print("DEBUG_PRINT: ログインに成功しました。")
+                    
+                    //HUDを消す
+                    SVProgressHUD.dismiss()
+                    
+                    //画面を閉じてviewcontrollerに戻る
+                    self.dismiss(animated: true, completion: nil)   //animatedとcompletionは何？
+                }
+            }
+        }
     }
     
     //アカウント作成
@@ -28,6 +54,7 @@ class LoginViewController: UIViewController {
             //どっちかが入力されてない時何もしない
             if address.isEmpty || password.isEmpty || displayName.isEmpty {
                 print("DEBUG_PRINT:  何かが空文字です。")
+                SVProgressHUD.showError(withStatus: "必須項目を入力してください。")
                 return
             }
             
@@ -36,6 +63,7 @@ class LoginViewController: UIViewController {
                 if let error = error {
                     //エラーがあったら原因をprintしてreturnすることで以降の処理を実行せず終了
                     print("DEBUG_PRINT: " + error.localizedDescription)
+                    SVProgressHUD.showError(withStatus: "ユーザー作成に失敗しました。")
                     return
                 }
                 print("DEBUG_PRINT: ユーザー作成に成功しました。")
@@ -49,6 +77,7 @@ class LoginViewController: UIViewController {
                         if let error = error {
                             //プロフィールの更新でエラーが発生
                             print("DEBUG_PRINT: " + error.localizedDescription)
+                            SVProgressHUD.showError(withStatus: "表示名の設定に失敗しました。")
                             return
                         }
                         print("DEBUG_PRINT: [displayName = \(String(describing: user.displayName))]の設定に成功しました。")

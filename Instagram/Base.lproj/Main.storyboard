@@ -17,6 +17,21 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="69"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="xSr-CY-9IJ">
+            <objects>
+                <viewController storyboardIdentifier="Login" id="icJ-dQ-fNk" customClass="LoginViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qxs-wV-xN0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4pX-H5-0Re">
                                 <rect key="frame" x="37" y="100" width="300" height="30"/>
@@ -52,6 +67,7 @@
                                 </constraints>
                                 <state key="normal" title="ログイン" backgroundImage="btn"/>
                                 <connections>
+                                    <action selector="handleLoginButton:" destination="icJ-dQ-fNk" eventType="touchUpInside" id="UUE-rg-I6b"/>
                                     <action selector="handleLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iCA-MB-Kx8"/>
                                 </connections>
                             </button>
@@ -63,44 +79,34 @@
                                 <state key="normal" title="アカウント作成" backgroundImage="btn"/>
                                 <connections>
                                     <action selector="handleCreateAccountButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9rQ-UV-8DX"/>
+                                    <action selector="handleCreateAccountButton:" destination="icJ-dQ-fNk" eventType="touchUpInside" id="uYa-7q-IOY"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="4pX-H5-0Re" firstAttribute="leading" secondItem="ER5-9X-ksH" secondAttribute="leading" id="01l-Jd-eIn"/>
-                            <constraint firstItem="4pX-H5-0Re" firstAttribute="leading" secondItem="lhJ-Cm-QIY" secondAttribute="leading" id="17J-qk-TCx"/>
-                            <constraint firstItem="lhJ-Cm-QIY" firstAttribute="top" secondItem="EPp-oW-Mf9" secondAttribute="bottom" constant="10" id="B1R-C0-s6K"/>
-                            <constraint firstItem="4pX-H5-0Re" firstAttribute="leading" secondItem="E01-EK-Aar" secondAttribute="leading" id="IUp-eJ-vcc"/>
-                            <constraint firstItem="4pX-H5-0Re" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bOH-t2-pt5"/>
-                            <constraint firstItem="EPp-oW-Mf9" firstAttribute="top" secondItem="4pX-H5-0Re" secondAttribute="bottom" constant="10" id="guZ-cH-bSw"/>
-                            <constraint firstItem="ER5-9X-ksH" firstAttribute="top" secondItem="E01-EK-Aar" secondAttribute="bottom" constant="10" id="kHx-Kf-11x"/>
-                            <constraint firstItem="4pX-H5-0Re" firstAttribute="leading" secondItem="EPp-oW-Mf9" secondAttribute="leading" id="oVI-bS-2Gg"/>
-                            <constraint firstItem="E01-EK-Aar" firstAttribute="top" secondItem="lhJ-Cm-QIY" secondAttribute="bottom" constant="10" id="rcJ-t2-D20"/>
-                            <constraint firstItem="4pX-H5-0Re" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="sfh-t1-DA2"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <connections>
-                        <outlet property="displayNameTextField" destination="lhJ-Cm-QIY" id="CeK-hO-Mqe"/>
-                        <outlet property="mailAddressTextField" destination="4pX-H5-0Re" id="r0V-H6-dei"/>
-                        <outlet property="passwordTextField" destination="EPp-oW-Mf9" id="xIz-I5-J6G"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="129" y="69"/>
-        </scene>
-        <!--Login View Controller-->
-        <scene sceneID="xSr-CY-9IJ">
-            <objects>
-                <viewController storyboardIdentifier="Login" id="icJ-dQ-fNk" customClass="LoginViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Qxs-wV-xN0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lhJ-Cm-QIY" secondAttribute="trailing" constant="20" symbolic="YES" id="2lc-BN-K1k"/>
+                            <constraint firstItem="lhJ-Cm-QIY" firstAttribute="top" secondItem="EPp-oW-Mf9" secondAttribute="bottom" constant="10" id="Cwj-oR-LeG"/>
+                            <constraint firstItem="4pX-H5-0Re" firstAttribute="top" secondItem="hAj-80-eyT" secondAttribute="top" constant="80" id="DRo-pw-7pz"/>
+                            <constraint firstItem="4pX-H5-0Re" firstAttribute="centerX" secondItem="Qxs-wV-xN0" secondAttribute="centerX" id="O7J-Zq-nvn"/>
+                            <constraint firstItem="EPp-oW-Mf9" firstAttribute="leading" secondItem="lhJ-Cm-QIY" secondAttribute="leading" id="Oxw-hK-deX"/>
+                            <constraint firstItem="EPp-oW-Mf9" firstAttribute="leading" secondItem="4pX-H5-0Re" secondAttribute="leading" id="Sz0-uH-6jd"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="E01-EK-Aar" secondAttribute="trailing" constant="20" symbolic="YES" id="ZgQ-Jn-Wwt"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ER5-9X-ksH" secondAttribute="trailing" constant="20" symbolic="YES" id="avE-dk-6Zc"/>
+                            <constraint firstItem="EPp-oW-Mf9" firstAttribute="leading" secondItem="ER5-9X-ksH" secondAttribute="leading" id="c56-FV-y1V"/>
+                            <constraint firstItem="ER5-9X-ksH" firstAttribute="top" secondItem="E01-EK-Aar" secondAttribute="bottom" constant="10" id="cIE-oT-VuT"/>
+                            <constraint firstItem="EPp-oW-Mf9" firstAttribute="top" secondItem="4pX-H5-0Re" secondAttribute="bottom" constant="10" id="fwT-Ga-OGt"/>
+                            <constraint firstItem="EPp-oW-Mf9" firstAttribute="leading" secondItem="E01-EK-Aar" secondAttribute="leading" id="k2Q-ix-std"/>
+                            <constraint firstItem="E01-EK-Aar" firstAttribute="top" secondItem="lhJ-Cm-QIY" secondAttribute="bottom" constant="10" id="qRG-Zo-ZJw"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EPp-oW-Mf9" secondAttribute="trailing" constant="20" symbolic="YES" id="zxg-cj-6b3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hAj-80-eyT"/>
                     </view>
+                    <connections>
+                        <outlet property="displayNameTextField" destination="lhJ-Cm-QIY" id="cnf-f4-7Zw"/>
+                        <outlet property="mailAddressTextField" destination="4pX-H5-0Re" id="Azg-tV-751"/>
+                        <outlet property="passwordTextField" destination="EPp-oW-Mf9" id="c7y-hS-n3T"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dnv-jx-lyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
