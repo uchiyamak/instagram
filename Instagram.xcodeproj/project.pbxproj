@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AE3C203FB28AE45EC211C505 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9E7ED5B45C885A334D4A7F /* Pods_Instagram.framework */; };
 		E575632F212819320070B1DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E575632E212819320070B1DB /* GoogleService-Info.plist */; };
+		E5756331212990BC0070B1DB /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5756330212990BC0070B1DB /* Const.swift */; };
 		E5F1A3E1211F4EAD0025B88C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F1A3E0211F4EAD0025B88C /* AppDelegate.swift */; };
 		E5F1A3E3211F4EAD0025B88C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F1A3E2211F4EAD0025B88C /* ViewController.swift */; };
 		E5F1A3E6211F4EAD0025B88C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5F1A3E4211F4EAD0025B88C /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		1E68A67B8D947C93EE7CF535 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		D7A183DD08E0BF05C9856579 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		E575632E212819320070B1DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E5756330212990BC0070B1DB /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		E5F1A3DD211F4EAD0025B88C /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F1A3E0211F4EAD0025B88C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5F1A3E2211F4EAD0025B88C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				E5F1A3F62125A3250025B88C /* ImageSelectViewController.swift */,
 				E5F1A3F82125A3370025B88C /* PostViewController.swift */,
 				E5F1A3FA2125A34A0025B88C /* SettingViewController.swift */,
+				E5756330212990BC0070B1DB /* Const.swift */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Instagram/Pods-Instagram-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CLImageEditor/CLImageEditor.framework",
 				"${BUILT_PRODUCTS_DIR}/ESTabBarController/ESTabBarController.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -192,6 +196,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CLImageEditor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -234,6 +239,7 @@
 				E5F1A3E3211F4EAD0025B88C /* ViewController.swift in Sources */,
 				E5F1A3E1211F4EAD0025B88C /* AppDelegate.swift in Sources */,
 				E5F1A3F72125A3250025B88C /* ImageSelectViewController.swift in Sources */,
+				E5756331212990BC0070B1DB /* Const.swift in Sources */,
 				E5F1A3FB2125A34A0025B88C /* SettingViewController.swift in Sources */,
 				E5F1A3F52125A30C0025B88C /* HomeViewController.swift in Sources */,
 			);
