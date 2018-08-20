@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import SVProgressHUD
+import SVProgressHUD        //便利なライブラリって、どうやって知ればいい？ググったらだいたいわかる？
 
 class PostViewController: UIViewController {
     var image: UIImage!
@@ -19,16 +19,16 @@ class PostViewController: UIViewController {
     //投稿ボタンをタップした時に呼ばれる
     @IBAction func handlePostButton(_ sender: Any) {
         //ImageViewから画像を取得する
-        let imageData = UIImageJPEGRepresentation(imageView.image!, 0.5)    //0.5は何？
-        let imageString = imageData!.base64EncodedString(options: .lineLength64Characters)      //イメージをStringに変換？
+        let imageData = UIImageJPEGRepresentation(imageView.image!, 0.5)    //0.5は何？　＝クオリティ。ライブラリを入れないと、固定値はできない。
+        let imageString = imageData!.base64EncodedString(options: .lineLength64Characters)      //イメージをStringに変換？バイナリデータにしている。バイナリデータ。人間が読めないデータはバイナリデータ。テキストだけどバイナリデータ。
         
         //postDataに必要な情報を取得しておく
         let time = Date.timeIntervalSinceReferenceDate
         let name = Auth.auth().currentUser?.displayName
         
         //辞書を作成してFirebaseに保存する
-        let postRef = Database.database().reference().child(Const.PostPath)     //これは何？
-        let postDic = ["caption": textField.text!, "image": imageString, "time": String(time), "name": name!]   //timeはstringに変換する必要ある？
+        let postRef = Database.database().reference().child(Const.PostPath)     //これは何？　保存先を指定している。
+        let postDic = ["caption": textField.text!, "image": imageString, "time": String(time), "name": name!]   //timeはstringに変換する必要ある？timeは扱いがめんどくさい。
         postRef.childByAutoId().setValue(postDic)
         
         //HUDで投稿完了を表示

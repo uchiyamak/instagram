@@ -28,9 +28,9 @@ class LoginViewController: UIViewController {
             
             //HUDで処理中を表示
             SVProgressHUD.show()
-            
-            Auth.auth().signIn(withEmail: address, password: password) { user, error in //userは何？
-                if let error = error {
+            //AuthDataResultCallback エイリアスに名前をつけたもの completionを見ればいい
+            Auth.auth().signIn(withEmail: address, password: password) { user, error in //userは何？後ろで使ってない
+                if let error = error {      //if let nilの判定をしている。アンラップとは、オプショナル型を、nilを許容しない型に変更する　guard letという書き方もある。
                     print("DEBUG_PRINT: " + error.localizedDescription)
                     SVProgressHUD.showError(withStatus: "サインインに失敗しました。")
                     return
@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
                 
                 //表示名を設定
                 let user = Auth.auth().currentUser
-                if let user = user {        //if文の使い方　userのletが２回目
+                if let user = user {        //if文の使い方　userのletが２回目。特殊な書き方。よくない。
                     let changeRequest = user.createProfileChangeRequest()
                     changeRequest.displayName = displayName
                     changeRequest.commitChanges { error in

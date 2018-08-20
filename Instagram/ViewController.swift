@@ -7,11 +7,11 @@
 //
 
 import Firebase
-import FirebaseAuth     //赤い横線はなんで？
+import FirebaseAuth     //赤い横線はなんで？ インポートしなくてもいいよ
 import UIKit
 import ESTabBarController
 
-class ViewController: UIViewController {
+class ViewController: UIViewController {        //「M」って何？
     
     
     override func viewDidLoad() {
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         //作成したESTabBarControllerを親のViewControllerに追加する
         addChildViewController(tabBarController)        //didmoveとセット
         let tabBarView = tabBarController.view!
-        tabBarView.translatesAutoresizingMaskIntoConstraints = false    //なに？
+        tabBarView.translatesAutoresizingMaskIntoConstraints = false    //なに？既存の制約を無効にする
         view.addSubview(tabBarView) //subviewとは
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
