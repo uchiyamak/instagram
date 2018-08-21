@@ -52,6 +52,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     //postdataクラスを生成して受け取ったデータを設定
                     if let uid = Auth.auth().currentUser?.uid {
                         let postData = PostData(snapshot: snapshot, myId: uid)      //snapshot, uidはどこからきている？
+                        self.postArray.insert(postData, at: 0)
+                        
+                        //tableviewを再表示
+                        self.tableView.reloadData()
+                    }
+                })
+                postsRef.observe(.childChanged, with: { snapshot in
+                    print("DEBUG_PRINT: .childChangedイベントが発生しました。")
+                    
+                    if let uid = Auth.auth().currentUser?.uid {
+                        //postDataクラスを生成して受け取ったデータを設定
+                        let postData = PostData(snapshot: snapshot, myId: uid)
                         
                         //保持している配列からidが同じものを探す  これなんで？
                         var index: Int = 0
@@ -62,8 +74,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             }
                         }
                         
+                        print("確認用：" + String(self.postArray.count))
                         //差し替えるために一度削除
-                        self.postArray.remove(at: index)
+                        self.postArray.remove(at: index)        //最初の立ち上げでホームに戻るとここでエラーになる
                         
                         //削除したところに更新すみのデータを追加
                         self.postArray.insert(postData, at: index)
