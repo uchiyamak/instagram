@@ -76,7 +76,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         
                         print("確認用：" + String(self.postArray.count))
                         //差し替えるために一度削除
-                        self.postArray.remove(at: index)        //最初の立ち上げでホームに戻るとここでエラーになる
+                        self.postArray.remove(at: index)
                         
                         //削除したところに更新すみのデータを追加
                         self.postArray.insert(postData, at: index)
@@ -135,6 +135,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let comment = cell.commentTextField.text!
         print("確認用: " + comment)
         
+        //配列からタップされたインデックスのデータを取り出す
+        let postData = postArray[indexPath.row]
+
+        //新たなコメントを保存
+        let postRef = Database.database().reference().child(Const.PostPath).child(postData.id!)
+        let comments = ["comments": postData.comments]
+        postRef.updateChildValues(comments)
+
     }
     
     //セル内のボタンがタップされた時に呼ばれるメソッド

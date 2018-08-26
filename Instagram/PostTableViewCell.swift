@@ -49,5 +49,10 @@ class PostTableViewCell: UITableViewCell {
             let buttonImage = UIImage(named: "like_none")
             self.likeButton.setImage(buttonImage, for: .normal)
         }
+        
+        //コメントラベルを追加
+        let comments = postData
+        self.commentLabel.text = "\(postData.name!) : \(postData.caption!)"
+
     }
 }
