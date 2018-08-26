@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!      //ログイン直後から、ホーム画面に画像が表示されるまでに時間がかかる
     
     var postArray: [PostData] = []
     
@@ -117,7 +117,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //セル内のボタンのアクションをソースコードで設定
         cell.likeButton.addTarget(self, action: #selector(handleButton(_:forEvent:)), for: .touchUpInside)
         
+        //コメント投稿ボタンが押された時に呼ばれるメソッド
+        cell.commentButton.addTarget(self, action: #selector(addCommentButton(_:forEvent:indexPath:)), for: .touchUpInside)
+                //k
+
         return cell
+    }
+    
+    //コメント投稿された時に呼ばれるメソッド
+    @objc func addCommentButton(_ sender: UIButton, forEvent event: UIEvent, indexPath: IndexPath) {
+        //セルを取得してデータを設定
+        //タップされた時のインデックスを求める
+        //let touch = event.allTouches?.first
+        //let point = touch!.location(in: self.tableView)
+        //let indexPath = tableView.indexPathForRow(at: point)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
+        let comment = cell.commentTextField.text!
+        print("確認用: " + comment)
     }
     
     //セル内のボタンがタップされた時に呼ばれるメソッド

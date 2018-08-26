@@ -28,7 +28,7 @@ class PostViewController: UIViewController {
         
         //辞書を作成してFirebaseに保存する
         let postRef = Database.database().reference().child(Const.PostPath)     //これは何？　保存先を指定している。
-        let postDic = ["caption": textField.text!, "image": imageString, "time": String(time), "name": name!]   //timeはstringに変換する必要ある？timeは扱いがめんどくさい。
+        let postDic = ["caption": textField.text!, "image": imageString, "time": String(time), "name": name!]   //timeはstringに変換する必要ある？timeは扱いがめんどくさい。  シミュレータだとここでエラーになる
         postRef.childByAutoId().setValue(postDic)
         
         //HUDで投稿完了を表示
