@@ -19,6 +19,8 @@ class PostData: NSObject {
     var date: Date?
     var likes: [String] = []    //配列？サイズは指定しなくて良い？
     var isLiked: Bool = false
+    var comments: [String] = []
+
     
     init(snapshot: DataSnapshot, myId: String) {    //関数？
         self.id = snapshot.key
@@ -45,5 +47,9 @@ class PostData: NSObject {
                 break
             }
         }
+        if let comments = valueDictionary["comments"] as? [String] {        //追加
+            self.comments = comments
+        }
+
     }
 }

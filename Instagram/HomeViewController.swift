@@ -119,7 +119,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //コメント投稿ボタンが押された時に呼ばれるメソッド
         cell.commentButton.addTarget(self, action: #selector(addCommentButton(_:forEvent:indexPath:)), for: .touchUpInside)
-                //k
+                //インデックスパスを引数にしたいができない
 
         return cell
     }
@@ -134,6 +134,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
         let comment = cell.commentTextField.text!
         print("確認用: " + comment)
+        
     }
     
     //セル内のボタンがタップされた時に呼ばれるメソッド
