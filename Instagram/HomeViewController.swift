@@ -74,7 +74,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             }
                         }
                         
-                        print("確認用：" + String(self.postArray.count))
+                        //print("確認用：" + String(self.postArray.count))
                         //差し替えるために一度削除
                         self.postArray.remove(at: index)
                         
@@ -118,30 +118,32 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.likeButton.addTarget(self, action: #selector(handleButton(_:forEvent:)), for: .touchUpInside)
         
         //コメント投稿ボタンが押された時に呼ばれるメソッド
-        cell.commentButton.addTarget(self, action: #selector(addCommentButton(_:forEvent:indexPath:)), for: .touchUpInside)
+        cell.commentButton.addTarget(self, action: #selector(addCommentButton(_:forEvent:)), for: .touchUpInside)   //indexPath:
                 //インデックスパスを引数にしたいができない
 
         return cell
     }
     
     //コメント投稿された時に呼ばれるメソッド
-    @objc func addCommentButton(_ sender: UIButton, forEvent event: UIEvent, indexPath: IndexPath) {
+    @objc func addCommentButton(_ sender: UIButton, forEvent event: UIEvent) {  //, indexPath: IndexPath
         //セルを取得してデータを設定
         //タップされた時のインデックスを求める
-        //let touch = event.allTouches?.first
-        //let point = touch!.location(in: self.tableView)
-        //let indexPath = tableView.indexPathForRow(at: point)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
+        let touch = event.allTouches?.first
+        let point = touch!.location(in: self.tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath!) as! PostTableViewCell
         let comment = cell.commentTextField.text!
         print("確認用: " + comment)
         
         //配列からタップされたインデックスのデータを取り出す
-        let postData = postArray[indexPath.row]
+        let postData = postArray[indexPath!.row]
 
         //新たなコメントを保存
         let postRef = Database.database().reference().child(Const.PostPath).child(postData.id!)
-        let comments = ["comments": postData.comments]
+        let comments = ["comments": comment]
         postRef.updateChildValues(comments)
+        
+        self.tableView.reloadData()
 
     }
     

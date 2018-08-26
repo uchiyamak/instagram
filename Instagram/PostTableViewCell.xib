@@ -56,7 +56,7 @@
                         </constraints>
                         <state key="normal" backgroundImage="like_none"/>
                     </button>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="コメント入力" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Q8-49-brA">
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="コメント入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Q8-49-brA">
                         <rect key="frame" x="26" y="518" width="218" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="wMe-PX-ufF"/>

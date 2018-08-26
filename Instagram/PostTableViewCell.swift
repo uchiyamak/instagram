@@ -51,8 +51,11 @@ class PostTableViewCell: UITableViewCell {
         }
         
         //コメントラベルを追加
-        let comments = postData
-        self.commentLabel.text = "\(postData.name!) : \(postData.caption!)"
+        let comments = postData.comments
+        print("コメント数確認" + String(comments.count))
+        for comment in comments {
+            self.commentLabel.text = "投稿者：\(comment)\n"
+        }
 
     }
 }
