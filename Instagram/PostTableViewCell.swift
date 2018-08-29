@@ -17,7 +17,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var commentButton: UIButton!
-    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var commentTextView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,12 +50,16 @@ class PostTableViewCell: UITableViewCell {
             self.likeButton.setImage(buttonImage, for: .normal)
         }
         
-        //コメントラベルを追加
+        //コメントラベルを追加        //２回呼び出されている。
         let comments = postData.comments
-        print("コメント数確認" + String(comments.count))
+        //print("コメント数確認" + String(comments.count))       //String(describing: type(of: text))
+        //print("コメント型確認" + String(describing: type(of: comments)))       //String(describing: type(of: text))
+        var showComment: String = ""
         for comment in comments {
-            self.commentLabel.text = "投稿者：\(comment)\n"
+            showComment = showComment + "\(comment)\n"
         }
+        self.commentTextView.text = showComment
+        //print("コメントラベル確認用" + self.commentTextView.text!)
 
     }
 }

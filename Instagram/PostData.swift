@@ -17,20 +17,20 @@ class PostData: NSObject {
     var name: String?
     var caption: String?
     var date: Date?
-    var likes: [String] = []    //配列？サイズは指定しなくて良い？
+    var likes: [String] = []    //配列？サイズは指定しなくて良い？２次元配列の場合は？
     var isLiked: Bool = false
     var comments: [String] = []
 
     
-    init(snapshot: DataSnapshot, myId: String) {    //関数？
+    init(snapshot: DataSnapshot, myId: String) {    //関数？インスタンス化するときに１度だけ呼び出される
         self.id = snapshot.key
         
         let valueDictionary = snapshot.value as! [String: Any]
         
-        imageString = valueDictionary["image"] as? String   //!と?の違いがいまいちわからない
-        image = UIImage(data: Data(base64Encoded: imageString!, options: .ignoreUnknownCharacters)!)    //ここで画像に戻している？
+        self.imageString = valueDictionary["image"] as? String   //!と?の違いがいまいちわからない
+        image = UIImage(data: Data(base64Encoded: self.imageString!, options: .ignoreUnknownCharacters)!)    //ここで画像に戻している？
         
-        self.name = valueDictionary["name"] as? String      //imageStringはselfいらなかったのになんで？
+        self.name = valueDictionary["name"] as? String      //imageStringはselfいらなかったのになんで？本当は必要
         
         self.caption = valueDictionary["caption"] as? String
         

@@ -35,10 +35,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //テーブルの高さをAutoLayoutで調整
         tableView.rowHeight = UITableViewAutomaticDimension
         //テーブル業の高さの概算値
-        tableView.estimatedRowHeight = UIScreen.main.bounds.width + 100     //heightじゃなくてwidth?正方形だから？
+        tableView.estimatedRowHeight = UIScreen.main.bounds.width + 100     //heightじゃなくてwidth?正方形だから？横幅を辺にした正方形。
     }
     
-    override func viewWillAppear(_ animated: Bool) {        //animatedってなんだっけ？
+    override func viewWillAppear(_ animated: Bool) {        //animatedってなんだっけ？そういうルール
         super.viewWillAppear(animated)
         print("DEBUG_PRINT: viewWillAppear")
         
@@ -51,19 +51,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                     //postdataクラスを生成して受け取ったデータを設定
                     if let uid = Auth.auth().currentUser?.uid {
-                        let postData = PostData(snapshot: snapshot, myId: uid)      //snapshot, uidはどこからきている？
-                        self.postArray.insert(postData, at: 0)
+                        let postData = PostData(snapshot: snapshot, myId: uid)      //snapshotはサーバーの情報。メタデータ、リファレンスのキーのデータ, 一つ一つのデータを別々に取ってくる。
+                        self.postArray.insert(postData, at: 0)      //ここでpostarrayにデータが入る。最初だけ読みに行く。
                         
                         //tableviewを再表示
                         self.tableView.reloadData()
                     }
                 })
-                postsRef.observe(.childChanged, with: { snapshot in
+                postsRef.observe(.childChanged, with: { snapshot in     //変更されたpostdataが入る。一個ずつ。
                     print("DEBUG_PRINT: .childChangedイベントが発生しました。")
                     
-                    if let uid = Auth.auth().currentUser?.uid {
+                    if let uid = Auth.auth().currentUser?.uid {     //ログインID
                         //postDataクラスを生成して受け取ったデータを設定
-                        let postData = PostData(snapshot: snapshot, myId: uid)
+                        let postData = PostData(snapshot: snapshot, myId: uid)  //最新の変更された投稿のみ。
                         
                         //保持している配列からidが同じものを探す  これなんで？
                         var index: Int = 0
@@ -119,7 +119,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //コメント投稿ボタンが押された時に呼ばれるメソッド
         cell.commentButton.addTarget(self, action: #selector(addCommentButton(_:forEvent:)), for: .touchUpInside)   //indexPath:
-                //インデックスパスを引数にしたいができない
+                //インデックスパスを引数にしたいができない　→できないらしい。
 
         return cell
     }
@@ -131,16 +131,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let touch = event.allTouches?.first
         let point = touch!.location(in: self.tableView)
         let indexPath = tableView.indexPathForRow(at: point)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath!) as! PostTableViewCell
-        let comment = cell.commentTextField.text!
-        print("確認用: " + comment)
         
-        //配列からタップされたインデックスのデータを取り出す
+        let cell = tableView.cellForRow(at: indexPath!) as! PostTableViewCell //cellForRowでindexpathのcellを取ってくる。
+        var comment: [String] = []
+        //ここに古いコメントを取ってくる
         let postData = postArray[indexPath!.row]
-
+        comment = postData.comments
+        
+        let user = Auth.auth().currentUser
+        let commentText = cell.commentTextField.text!
+        comment.append(user!.displayName! + ": " + commentText)
+        //print(": " + "")
+        //コメントをクリア
+        cell.commentTextField.text! = ""
+        
         //新たなコメントを保存
         let postRef = Database.database().reference().child(Const.PostPath).child(postData.id!)
-        let comments = ["comments": comment]
+        let comments = ["comments": comment]    //既存のコメントを取って、
         postRef.updateChildValues(comments)
         
         self.tableView.reloadData()
@@ -152,18 +159,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("DEBUG_PRINT: likeボタンがタップされました")
         
         //タップされた時のインデックスを求める
-        let touch = event.allTouches?.first     //これは何？
-        let point = touch!.location(in: self.tableView)     //整数が入る？
-        let indexPath = tableView.indexPathForRow(at: point)    //これは？配列？
+        let touch = event.allTouches?.first     //これは何？　配列、触られたときのイベント。画面を触るたびに位置とか時間とかがalltouchesに入っている。UItouchクラス
+        let point = touch!.location(in: self.tableView)     //整数が入る？　座標
+        let indexPath = tableView.indexPathForRow(at: point)    //これは？IndexPath
         
         //配列からタップされたインデックスのデータを取り出す
-        let postData = postArray[indexPath!.row]
+        let postData = postArray[indexPath!.row]    //なんばんめのセクションのなんばんめのrowか。
         
         //Firebaseに保存するデータの準備
         if let uid = Auth.auth().currentUser?.uid {
             if postData.isLiked {
                 //すでにいいねを押していた場合は解除
-                var index = -1      //-1は仮？
+                var index = -1      //-1は仮？　//間違ったものを消さないように。
                 for likeId in postData.likes {
                     if likeId == uid {
                         //解除するためにインデックスを保存

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -34,7 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4N-bO-Sms">
-                        <rect key="frame" x="26" y="389" width="268" height="69"/>
+                        <rect key="frame" x="26" y="389" width="268" height="27"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -72,33 +73,33 @@
                         </constraints>
                         <state key="normal" title="投稿"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADI-Ji-UDJ">
-                        <rect key="frame" x="26" y="468" width="268" height="40"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XGz-Og-Tu4">
+                        <rect key="frame" x="26" y="426" width="268" height="80"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="npv-d4-qw1"/>
+                            <constraint firstAttribute="height" constant="80" id="G6x-GG-JsY"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ADI-Ji-UDJ" firstAttribute="top" secondItem="c4N-bO-Sms" secondAttribute="bottom" constant="10" id="2MF-jj-AlY"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="ADI-Ji-UDJ" secondAttribute="trailing" constant="10" id="2kw-Au-qv0"/>
-                    <constraint firstItem="ADI-Ji-UDJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="7df-K5-jmC"/>
                     <constraint firstItem="pe9-EJ-zos" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="A9v-QA-6C1"/>
+                    <constraint firstItem="5Q8-49-brA" firstAttribute="topMargin" secondItem="XGz-Og-Tu4" secondAttribute="bottom" constant="20" id="CUg-ii-u2K"/>
                     <constraint firstItem="BEV-ha-6nY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="EJd-vY-L6U"/>
                     <constraint firstItem="5Q8-49-brA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="KlV-Io-Ywj"/>
                     <constraint firstItem="cIQ-Gu-3TC" firstAttribute="centerY" secondItem="5Q8-49-brA" secondAttribute="centerY" id="LH7-TX-NfA"/>
                     <constraint firstItem="pe9-EJ-zos" firstAttribute="top" secondItem="BEV-ha-6nY" secondAttribute="bottom" constant="10" id="MhQ-tX-sao"/>
-                    <constraint firstItem="5Q8-49-brA" firstAttribute="top" secondItem="ADI-Ji-UDJ" secondAttribute="bottom" constant="10" id="Riu-M7-P1z"/>
+                    <constraint firstItem="XGz-Og-Tu4" firstAttribute="top" secondItem="c4N-bO-Sms" secondAttribute="bottom" constant="10" id="MrV-Dh-6Ty"/>
                     <constraint firstAttribute="trailingMargin" secondItem="c4N-bO-Sms" secondAttribute="trailing" constant="10" id="TlK-bC-ij9"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="XGz-Og-Tu4" secondAttribute="trailing" constant="10" id="aQ3-J4-hDq"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Lea-P9-uyi" secondAttribute="trailing" constant="10" id="ayH-F6-zMN"/>
                     <constraint firstItem="Lea-P9-uyi" firstAttribute="centerY" secondItem="pe9-EJ-zos" secondAttribute="centerY" id="bcU-iG-KaL"/>
                     <constraint firstItem="BEV-ha-6nY" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="dLU-j6-4hx"/>
                     <constraint firstAttribute="bottomMargin" secondItem="5Q8-49-brA" secondAttribute="bottom" constant="10" id="fl1-Pi-cUa"/>
                     <constraint firstItem="BEV-ha-6nY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="gVr-g1-Xp5"/>
                     <constraint firstItem="JJJ-Se-llH" firstAttribute="leading" secondItem="pe9-EJ-zos" secondAttribute="trailing" constant="10" id="giS-p1-kcW"/>
+                    <constraint firstItem="XGz-Og-Tu4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="jxA-af-lK0"/>
                     <constraint firstItem="c4N-bO-Sms" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="kB1-t1-JGw"/>
                     <constraint firstItem="cIQ-Gu-3TC" firstAttribute="leading" secondItem="5Q8-49-brA" secondAttribute="trailing" constant="10" id="lUp-ay-PjN"/>
                     <constraint firstItem="JJJ-Se-llH" firstAttribute="centerY" secondItem="pe9-EJ-zos" secondAttribute="centerY" id="pu8-SW-nJt"/>
@@ -110,8 +111,8 @@
             <connections>
                 <outlet property="captionLabel" destination="c4N-bO-Sms" id="d7P-KR-qfi"/>
                 <outlet property="commentButton" destination="cIQ-Gu-3TC" id="P7i-gZ-i8G"/>
-                <outlet property="commentLabel" destination="ADI-Ji-UDJ" id="pxI-KW-LAz"/>
                 <outlet property="commentTextField" destination="5Q8-49-brA" id="XQO-t0-V8q"/>
+                <outlet property="commentTextView" destination="XGz-Og-Tu4" id="1V9-pj-lS1"/>
                 <outlet property="dateLabel" destination="Lea-P9-uyi" id="OaF-gL-l17"/>
                 <outlet property="likeButton" destination="pe9-EJ-zos" id="x1I-9J-T5W"/>
                 <outlet property="likeLabel" destination="JJJ-Se-llH" id="WCM-YC-YjR"/>

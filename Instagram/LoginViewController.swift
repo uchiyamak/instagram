@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
                     SVProgressHUD.dismiss()
                     
                     //画面を閉じてviewcontrollerに戻る
-                    self.dismiss(animated: true, completion: nil)   //animatedとcompletionは何？
+                    self.dismiss(animated: true, completion: nil)   //animatedとcompletionは何？　animatedをONにする。dismissの場合は下に消える。iosでは独自のやり方は推奨されない。completion削除の後に実行したい関数を入れる。例えば、複数のアニメーションが終了したらこういう処理を。
                 }
             }
         }
